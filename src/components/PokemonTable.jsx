@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,31 +15,23 @@ const useStyles = makeStyles({
   },
 });
 
-const rows = [
-  {
-    "name": "bulbasaur",
-    "url": "https://pokeapi.co/api/v2/pokemon/1/"
-  },
-  {
-    "name": "ivysaur",
-    "url": "https://pokeapi.co/api/v2/pokemon/2/"
-  },
-  {
-    "name": "venusaur",
-    "url": "https://pokeapi.co/api/v2/pokemon/3/"
-  },
-  {
-    "name": "charmander",
-    "url": "https://pokeapi.co/api/v2/pokemon/4/"
-  },
-  {
-    "name": "charmeleon",
-    "url": "https://pokeapi.co/api/v2/pokemon/5/"
-  },
-];
+export default function PokemonTable() {
 
+  const [pokemons, setPokemons] = useState([]);
 
-export default function DataTable() {
+  const getPokemonList = () => {
+    axios.get("https://pokeapi.co/api/v2/pokemon/?limit=5&offset=0").then((result) => {
+      setPokemons(result.data.results);
+    }).catch((error) => {
+      // handle error
+      console.log(error);
+    })
+  }
+
+  useEffect( () => {
+    getPokemonList();
+  })
+
   const classes = useStyles();
 
   return (
@@ -50,7 +43,7 @@ export default function DataTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {pokemons.map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
                 {row.name}

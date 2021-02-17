@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar, Container, Typography } from '@material-ui/core';
-import DataTable from './data-table'
+import PokemonTable from './PokemonTable'
 
 export function Home() {
   return (
@@ -15,7 +15,7 @@ export function Home() {
         </AppBar>
         <Toolbar />
       </Container>
-      <DataTable/>
+      <PokemonTable/>
     </Container>
   )
 }
