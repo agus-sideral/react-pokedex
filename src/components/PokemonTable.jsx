@@ -17,27 +17,40 @@ const useStyles = makeStyles({
   },
 });
 
+const pokeapiUrl = 'https://pokeapi.co/api/v2';
+const pageSize = 5;
+
 export default function PokemonTable() {
 
   const [pokemons, setPokemons] = useState([]);
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(pageSize);
   // -1 to enable server side count by material docs
-  const [count, setCount] = React.useState(-1)
+  const [count, setCount] = React.useState(-1);
+  const [nextPage, setNextPage] = React.useState('');
+  const [previousPage, setPreviousPage] = React.useState('');
 
   const handleChangePage = (event, newPage) => {
+    if(newPage > page) {
+      getPokemonList(nextPage)
+    }
+    else {
+      getPokemonList(previousPage)
+    }
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 5));
+    setRowsPerPage(parseInt(event.target.value, pageSize));
     setPage(0);
   };
 
-  const getPokemonList = () => {
-    axios.get("https://pokeapi.co/api/v2/pokemon/?limit=5&offset=0").then((result) => {
+  const getPokemonList = (url=`${pokeapiUrl}/pokemon/?limit=${pageSize}&offset=0`) => {
+    axios.get(url).then((result) => {
       setPokemons(result.data.results);
       setCount(result.data.count);
+      setNextPage(result.data.next);
+      setPreviousPage(result.data.previous);
     }).catch((error) => {
       // handle error
       console.log(error);
