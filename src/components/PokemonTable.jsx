@@ -10,6 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableFooter from '@material-ui/core/TableFooter';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles({
   table: {
@@ -32,6 +33,8 @@ export default function PokemonTable() {
   const [count, setCount] = React.useState(-1);
   const [nextPage, setNextPage] = React.useState('');
   const [previousPage, setPreviousPage] = React.useState('');
+
+  const { t, i18n } = useTranslation();
 
   const handleChangePage = (event, newPage) => {
     if(newPage > page) {
@@ -71,7 +74,7 @@ export default function PokemonTable() {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
+            <TableCell>{t('Name')}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

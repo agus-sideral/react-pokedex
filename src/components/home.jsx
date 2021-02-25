@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Container, Typography } from '@material-ui/core';
 import PokemonTable from './PokemonTable'
+import LanguageToggler from "./LanguageToggler";
 import { useTranslation } from 'react-i18next';
 
 export function Home() {
@@ -18,6 +19,7 @@ export function Home() {
         <Toolbar />
       </Container>
       <PokemonTable/>
+      <LanguageToggler/>
     </Container>
   )
 }

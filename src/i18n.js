@@ -4,12 +4,14 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      "Welcome to Pokedex": "Welcome to Pokedex"
+      "Welcome to Pokedex": "Welcome to Pokedex",
+      "Name": "Name"
     }
   },
   es: {
     translation: {
-      "Welcome to Pokedex": "Bienvenidos a Pokedex"
+      "Welcome to Pokedex": "Bienvenidos a Pokedex",
+      "Name": "Nombre"
     }
   }
 };
