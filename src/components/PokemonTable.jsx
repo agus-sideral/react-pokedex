@@ -15,6 +15,9 @@ const useStyles = makeStyles({
   table: {
     minWidth: '100%',
   },
+  container: {
+    marginTop: 24
+  }
 });
 
 const pokeapiUrl = 'https://pokeapi.co/api/v2';
@@ -64,7 +67,7 @@ export default function PokemonTable() {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.container}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
