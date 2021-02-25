@@ -1,19 +1,15 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import translationEn from './i18n/en.json'
+import translationEs from './i18n/es.json'
 
 const resources = {
   en: {
-    translation: {
-      "Welcome to Pokedex": "Welcome to Pokedex",
-      "Name": "Name"
-    }
+    translation: translationEn
   },
   es: {
-    translation: {
-      "Welcome to Pokedex": "Bienvenidos a Pokedex",
-      "Name": "Nombre"
-    }
-  }
+    translation: translationEs
+  },
 };
 
 i18n
